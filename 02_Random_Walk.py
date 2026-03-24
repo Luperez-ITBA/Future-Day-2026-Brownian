@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-st.set_page_config(page_title="Browniano - ITBA", layout="wide")
+st.set_page_config(page_title="Estadística y Browniano - ITBA", layout="wide")
 
 if 'caminos' not in st.session_state:
     st.session_state.caminos = []
@@ -11,8 +11,7 @@ if 'caminos' not in st.session_state:
 # --- SIDEBAR ---
 with st.sidebar:
     try:
-        # Cargamos el logo institucional
-        logo = Image.open('logo.png')
+        logo = Image.open('logo.png') #
         st.image(logo, use_container_width=True)
     except:
         st.write("ITBA - Future Day")
@@ -30,7 +29,6 @@ with st.sidebar:
         st.rerun()
 
 # --- CUERPO PRINCIPAL ---
-# Título actualizado según tu indicación
 st.title("🥴 Del Paseo del Borracho al Movimiento Browniano")
 st.write("---")
 
@@ -48,7 +46,6 @@ with tab1:
     ax_tr.set_ylabel("Posición")
     st.pyplot(fig_tr)
     
-    # Aclaración sobre el proceso
     st.write("Estamos viendo una **distribución de trayectorias** que responden al concepto de **movimiento browniano**.")
 
 with tab2:
@@ -68,7 +65,6 @@ with tab2:
         ax_hist.legend()
         st.pyplot(fig_hist)
         
-        # Aclaración sobre el resultado final y el TCL
         st.write("### Posición Final y Teorema Central del Límite")
         st.write(f"""
         En este gráfico observamos la **posición final** de todas las trayectorias simuladas. 
@@ -76,6 +72,12 @@ with tab2:
         una **Campana de Gauss**, demostrando que el desorden individual genera un orden estadístico predecible.
         """)
         
-        st.info("💡 Esta idea aplica a la **física estadística**. Para profundizar en la evidencia experimental de los átomos, sugerimos buscar el fenómeno del 'Movimiento Browniano'.")
+        # --- AQUÍ ESTÁ DE VUELTA EL BLOQUE DE EINSTEIN ---
+        st.info("""
+        💡 **Dato Histórico:** Esta idea aplica fundamentalmente a la **física estadística**. 
+        En 1905, **Albert Einstein** utilizó esta misma matemática para explicar el movimiento de partículas 
+        suspendidas en un líquido, proporcionando así la primera evidencia física indiscutible de la 
+        existencia de los átomos.
+        """)
     else:
         st.warning("Simula algunos paseos más para generar la estadística de las posiciones finales.")
