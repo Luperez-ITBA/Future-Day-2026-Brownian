@@ -10,10 +10,12 @@ if 'caminos' not in st.session_state:
 
 # --- SIDEBAR ---
 with st.sidebar:
+    # --- CORRECCIÓN AQUÍ: Usamos el nombre exacto de tu archivo ---
     try:
-        logo = Image.open('logo.png') #
+        logo = Image.open('logo_itba.png') #
         st.image(logo, use_container_width=True)
     except:
+        # Mensaje de respaldo por si acaso
         st.write("ITBA - Future Day")
     
     st.header("Configuración")
@@ -72,7 +74,6 @@ with tab2:
         una **Campana de Gauss**, demostrando que el desorden individual genera un orden estadístico predecible.
         """)
         
-        # --- AQUÍ ESTÁ DE VUELTA EL BLOQUE DE EINSTEIN ---
         st.info("""
         💡 **Dato Histórico:** Esta idea aplica fundamentalmente a la **física estadística**. 
         En 1905, **Albert Einstein** utilizó esta misma matemática para explicar el movimiento de partículas 
