@@ -9,6 +9,32 @@ st.set_page_config(page_title="Estadística y Browniano - ITBA", layout="wide", 
 if 'caminos' not in st.session_state:
     st.session_state.caminos = []
 
+# --- ESTILOS CSS RESPONSIVOS ---
+st.markdown("""
+    <style>
+    /* Recuadro celeste personalizado */
+    .recuadro-celeste {
+        font-size: 20px; 
+        line-height: 1.6; 
+        background-color: #e0f2fe; /* Fondo celeste claro */
+        padding: 25px; 
+        border-radius: 12px; 
+        border-left: 8px solid #0284c7; /* Borde azul fuerte */
+        color: #0f172a;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    /* Adaptación automática para celulares */
+    @media (max-width: 768px) {
+        .recuadro-celeste { 
+            font-size: 16px !important; 
+            padding: 15px !important; 
+        }
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- CABECERA (Logo y Título) ---
 col_logo, col_titulo = st.columns([1, 4])
 
@@ -21,6 +47,31 @@ with col_logo:
 
 with col_titulo:
     st.title("🥴 Del Paseo del Borracho al Movimiento Browniano")
+
+st.write("---")
+
+# --- INTRODUCCIÓN HISTÓRICA ---
+# Usamos 3 columnas: 1.5 para las fotos, 6 para el texto central
+c_einstein, c_texto, c_wiener = st.columns([1.5, 6, 1.5])
+
+with c_einstein:
+    try:
+        st.image('einstein.png', use_container_width=True, caption="Albert Einstein")
+    except:
+        pass # Falla silenciosa si no subiste la foto aún
+
+with c_texto:
+    st.markdown("""
+    <div class="recuadro-celeste">
+        La <b><i>caminata al azar</i></b> suele representarse como la posición de un borracho que da pasos adelante o atrás con igual probabilidad. Tan sencilla idea da lugar a un fenómeno realmente fascinante conocido como <b><i>movimiento Browniano</i></b> que ocupó a mentes tan brillantes como Albert Einstein y Norbert Wiener (creador de la cibernética).
+    </div>
+    """, unsafe_allow_html=True)
+
+with c_wiener:
+    try:
+        st.image('norbert.png', use_container_width=True, caption="Norbert Wiener")
+    except:
+        pass # Falla silenciosa si no subiste la foto aún
 
 st.write("---")
 
@@ -88,7 +139,7 @@ with col_display:
             
             st.write("### Posición Final y Teorema Central del Límite")
             st.write(f"""
-            En este gráfico observamos la **position final** de todas las trayectorias simuladas. 
+            En este gráfico observamos la **posición final** de todas las trayectorias simuladas. 
             Como predice el **Teorema Central del Límite**, la distribución de estos puntos tiende a formar 
             una **Campana de Gauss**, demostrando que el desorden individual genera un orden estadístico predecible.
             """)
