@@ -3,37 +3,55 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-st.set_page_config(page_title="Estadística y Browniano - ITBA", layout="wide")
+# Configuración de la página con barra lateral colapsada por defecto
+st.set_page_config(page_title="Estadística y Browniano - ITBA", layout="wide", initial_sidebar_state="collapsed")
 
 if 'caminos' not in st.session_state:
     st.session_state.caminos = []
 
-# --- SIDEBAR ---
-with st.sidebar:
-    # --- CORRECCIÓN AQUÍ: Usamos el nombre exacto de tu archivo ---
+# --- CABECERA Y CONTROLES (Reemplaza a la barra lateral) ---
+col_logo, col_titulo = st.columns([1, 4])
+
+with col_logo:
     try:
-        logo = Image.open('logo_itba.png') #
+        logo = Image.open('logo_itba.png')
         st.image(logo, use_container_width=True)
     except:
-        # Mensaje de respaldo por si acaso
-        st.write("ITBA - Future Day")
-    
-    st.header("Configuración")
+        st.write("### ITBA")
+
+with col_titulo:
+    st.title("🥴 Del Paseo del Borracho al Movimiento Browniano")
+
+st.write("---")
+
+# Controles distribuidos en el cuerpo principal
+col_slider, col_spacer = st.columns([2, 2])
+with col_slider:
     n_pasos = st.slider("Pasos por paseo (N):", 100, 10000, 1000, step=100)
-    
-    if st.button("🚶‍♂️ Simular 10 paseos"):
+
+col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
+with col_btn1:
+    if st.button("🚶‍♂️ Simular 10 paseos", use_container_width=True):
         for _ in range(10):
             pasos = np.random.choice([-1, 1], size=n_pasos)
             st.session_state.caminos.append(np.cumsum(pasos))
-            
-    if st.button("🗑️ Reiniciar"):
+        st.rerun()
+
+with col_btn2:
+    if st.button("🚀 Simular 1000 paseos", use_container_width=True):
+        for _ in range(1000):
+            pasos = np.random.choice([-1, 1], size=n_pasos)
+            st.session_state.caminos.append(np.cumsum(pasos))
+        st.rerun()
+
+with col_btn3:
+    if st.button("🗑️ Reiniciar", use_container_width=True):
         st.session_state.caminos = []
         st.rerun()
 
-# --- CUERPO PRINCIPAL ---
-st.title("🥴 Del Paseo del Borracho al Movimiento Browniano")
 st.write("---")
 
+# --- CUERPO PRINCIPAL ---
 tab1, tab2 = st.tabs(["📈 Trayectorias", "📊 Análisis Estadístico"])
 
 with tab1:
@@ -46,7 +64,7 @@ with tab1:
     ax_tr.set_title("Evolución Temporal")
     ax_tr.set_xlabel("Tiempo (pasos)")
     ax_tr.set_ylabel("Posición")
-    st.pyplot(fig_tr)
+    st.pyplot(fig_tr, use_container_width=True)
     
     st.write("Estamos viendo una **distribución de trayectorias** que responden al concepto de **movimiento browniano**.")
 
@@ -65,7 +83,7 @@ with tab2:
         
         ax_hist.set_title("Distribución de Posiciones Finales")
         ax_hist.legend()
-        st.pyplot(fig_hist)
+        st.pyplot(fig_hist, use_container_width=True)
         
         st.write("### Posición Final y Teorema Central del Límite")
         st.write(f"""
