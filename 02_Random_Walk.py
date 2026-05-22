@@ -64,6 +64,8 @@ with c_texto:
     st.markdown("""
     <div class="recuadro-celeste">
         La <b><i>caminata al azar</i></b> suele representarse como la posición de un borracho que da pasos adelante o atrás con igual probabilidad. Tan sencilla idea da lugar a un fenómeno realmente fascinante conocido como <b><i>movimiento Browniano</i></b> que ocupó a mentes tan brillantes como Albert Einstein y Norbert Wiener (creador de la cibernética).
+        <br><br>
+        El <b><i>proceso de Wiener</i></b> o movimiento Browniano muestra cómo la repetición de un experimento totalmente azaroso va <b><i>tomando forma</i></b> en su aspecto <b><i>asintótico</i></b>, dando lugar a un <b><i>proceso gaussiano</i></b> que sigue leyes estadísticas universales.
     </div>
     """, unsafe_allow_html=True)
 
